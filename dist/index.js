@@ -8755,31 +8755,32 @@ exports.debug = debug; // for test
 
 function getSlackMessage({ message, color, reason, branch, actor }) {
     var messages = message.split('|').join('\n');
-  
-    return [
+    
+
+    let result = [
       {
         color,
-        fields: [
-          {
-            title: 'Reason',
-            value: `${reason}`,
-            short: true,
-          },
-          {
-            title: 'Branch',
-            value: `${branch}`,
-            short: true,
-          },
-          {
-            title: 'User',
-            value: actor,
-            short: true,
-          },
-          {
-            title: 'Status',
-            value: `${messages}`,
-            short: true,
-          },
+        blocks: [
+            {
+                type: "context",
+                elements: [
+                    {
+                        "type": "mrkdwn",
+                        "text": `User: *${actor}*`
+                    },
+                    {
+                        "type": "mrkdwn",
+                        "text": `Branch: *${branch}*`
+                    },
+                    {
+                        "type": "mrkdwn",
+                        "text": `Reason: *${reason}*`
+                    }
+                ]
+            },
+            {
+                "type": "divider"
+            },
         ],
         ts: Math.floor(Date.now() / 1000),
       },
