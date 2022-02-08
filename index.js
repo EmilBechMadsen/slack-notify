@@ -6,11 +6,11 @@ const { getSlackMessage, formatChannelName } = require('./src/slack');
   try {
     const channel = core.getInput('channel') || process.env.SLACK_CHANNEL;
     const message = core.getInput('message') || process.env.SLACK_MESSAGE;
-    const color = core.getInput('color') || process.env.SLACK_COLOR;
     const messageId = core.getInput('message_id')  || process.env.SLACK_MESSAGE_ID;
     const reason = core.getInput('reason')  || process.env.SLACK_REASON;
     const branch = core.getInput('branch')  || process.env.SLACK_BRANCH;
     const actor = core.getInput('actor')  || process.env.SLACK_ACTOR || "Unknown";
+    const slot = core.getInput('slot')  || process.env.SLACK_SLOT;
     const token = process.env.SLACK_BOT_TOKEN;
     const slack = new WebClient(token);
     const channel_id = core.getInput('channel_id') || process.env.SLACK_CHANNEL_ID;
@@ -20,7 +20,7 @@ const { getSlackMessage, formatChannelName } = require('./src/slack');
       return;
     }
 
-    const blocks = getSlackMessage({ message, color, reason, branch, actor });
+    const blocks = getSlackMessage({ message, reason, branch, actor, slot });
     const channelId = channel_id || (await lookUpChannelId({ slack, channel }));
 
     if (!channelId) {

@@ -1,8 +1,8 @@
-function getSlackMessage({ message, reason, branch, actor }) {
+function getSlackMessage({ message, reason, branch, actor, slot }) {
     
 
     let result = []
-    if (reason || branch || actor !== "Unknown")
+    if (reason || branch || actor !== "Unknown" || slot)
     {
         result.push(
             {
@@ -17,6 +17,10 @@ function getSlackMessage({ message, reason, branch, actor }) {
             {
                 type: "context",
                 elements: [
+                    {
+                        type: "mrkdwn",
+                        text: `Slot: *${slot}*`
+                    },
                     {
                         type: "mrkdwn",
                         text: `User: *${actor}*`

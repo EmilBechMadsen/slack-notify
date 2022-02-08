@@ -13,8 +13,8 @@ inputs:
   message:
     description: 'The status to list in the update.'
     required: true
-  color:
-    description: 'The color of the Slack attachment.'
+  slot:
+    description: 'The deployment slot of the Slack header.'
     required: false
     default: '#cccccc'
   message_id:

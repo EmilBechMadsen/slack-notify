@@ -8753,11 +8753,11 @@ exports.debug = debug; // for test
 /***/ 9393:
 /***/ ((module) => {
 
-function getSlackMessage({ message, reason, branch, actor }) {
+function getSlackMessage({ message, reason, branch, actor, slot }) {
     
 
     let result = []
-    if (reason || branch || actor !== "Unknown")
+    if (reason || branch || actor !== "Unknown" || slot)
     {
         result.push(
             {
@@ -8772,6 +8772,10 @@ function getSlackMessage({ message, reason, branch, actor }) {
             {
                 type: "context",
                 elements: [
+                    {
+                        type: "mrkdwn",
+                        text: `Slot: *${slot}*`
+                    },
                     {
                         type: "mrkdwn",
                         text: `User: *${actor}*`
@@ -9016,11 +9020,11 @@ const { getSlackMessage, formatChannelName } = __nccwpck_require__(9393);
   try {
     const channel = core.getInput('channel') || process.env.SLACK_CHANNEL;
     const message = core.getInput('message') || process.env.SLACK_MESSAGE;
-    const color = core.getInput('color') || process.env.SLACK_COLOR;
     const messageId = core.getInput('message_id')  || process.env.SLACK_MESSAGE_ID;
     const reason = core.getInput('reason')  || process.env.SLACK_REASON;
     const branch = core.getInput('branch')  || process.env.SLACK_BRANCH;
     const actor = core.getInput('actor')  || process.env.SLACK_ACTOR || "Unknown";
+    const slot = core.getInput('slot')  || process.env.SLACK_SLOT;
     const token = process.env.SLACK_BOT_TOKEN;
     const slack = new WebClient(token);
     const channel_id = core.getInput('channel_id') || process.env.SLACK_CHANNEL_ID;
@@ -9030,7 +9034,7 @@ const { getSlackMessage, formatChannelName } = __nccwpck_require__(9393);
       return;
     }
 
-    const blocks = getSlackMessage({ message, color, reason, branch, actor });
+    const blocks = getSlackMessage({ message, reason, branch, actor, slot });
     const channelId = channel_id || (await lookUpChannelId({ slack, channel }));
 
     if (!channelId) {
