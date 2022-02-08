@@ -2,7 +2,7 @@ function getSlackMessage({ message, reason, branch, actor }) {
     
 
     let result = []
-    if (reason || branch || actor)
+    if (reason || branch || actor !== "Unknown")
     {
         result.push(
             {
