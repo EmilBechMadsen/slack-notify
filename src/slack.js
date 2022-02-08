@@ -1,5 +1,5 @@
 function getSlackMessage({ message, color, reason, branch, actor }) {
-    var messages = message.split('|').join('\n');
+    var messages = message.split('|')
     
 
     let result = [
@@ -24,6 +24,20 @@ function getSlackMessage({ message, color, reason, branch, actor }) {
                 type: "divider"
             },
         ];
+    for (let message in messages)
+    {
+        result.push(
+            {
+                type: "context",
+                elements: [
+                    {
+                        type: "mrkdwn",
+                        text: message
+                    }
+                ]
+            }
+        );
+    }
     return result;
   }
   
