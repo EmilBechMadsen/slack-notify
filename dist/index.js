@@ -8765,26 +8765,27 @@ function getSlackMessage({ message, color, reason, branch, actor }) {
                 type: "context",
                 elements: [
                     {
-                        "type": "mrkdwn",
-                        "text": `User: *${actor}*`
+                        type: "mrkdwn",
+                        text: `User: *${actor}*`
                     },
                     {
-                        "type": "mrkdwn",
-                        "text": `Branch: *${branch}*`
+                        type: "mrkdwn",
+                        text: `Branch: *${branch}*`
                     },
                     {
-                        "type": "mrkdwn",
-                        "text": `Reason: *${reason}*`
+                        type: "mrkdwn",
+                        text: `Reason: *${reason}*`
                     }
                 ]
             },
             {
-                "type": "divider"
+                type: "divider"
             },
         ],
         ts: Math.floor(Date.now() / 1000),
       },
     ];
+    return result;
   }
   
   module.exports.getSlackMessage = getSlackMessage;
