@@ -1,0 +1,18 @@
+{
+    "name": "slack-notify-gha",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+      "build": "ncc build index.js"
+    },
+    "dependencies": {
+      "@actions/core": "^1.1.3",
+      "@actions/github": "^1.1.0",
+      "@slack/web-api": "^5.3.0"
+    },
+    "devDependencies": {
+      "@vercel/ncc": "^0.20.5"
+    }
+  }
+  

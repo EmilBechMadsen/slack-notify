@@ -1,0 +1,40 @@
+name: 'Slack Notify'
+description: 'Send a message to slack'
+branding:
+  icon: message-square
+  color: orange
+inputs:
+  channel:
+    description: 'The Slack channel name. Required if no `channel_id` provided.'
+    required: false
+  channel_id:
+    description: 'The Slack channel ID. Required if no `channel` provided.'
+    required: false
+  status:
+    description: 'The status to list in the update.'
+    required: true
+  color:
+    description: 'The color of the Slack attachment.'
+    required: true
+    default: '#cccccc'
+  message_id:
+    description: 'The ID of the existing Slack message to update.'
+    required: false
+  reason:
+    description: 'Reason for the event'
+    required: true
+  project_name:
+    description: 'Override the project name.'
+    required: false
+  actor:
+    description: 'Override the actor name.'
+    required: false
+  repo_url:
+    description: 'Override the repository URL.'
+    required: false
+outputs:
+  message_id:
+    description: 'The unique timestamp identifier of the Slack message sent. Used to update message.'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
