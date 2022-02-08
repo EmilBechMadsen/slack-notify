@@ -8753,11 +8753,13 @@ exports.debug = debug; // for test
 /***/ 9393:
 /***/ ((module) => {
 
-function getSlackMessage({ message, color, reason, branch, actor }) {
-    var messages = message.split('|')
+function getSlackMessage({ message, reason, branch, actor }) {
     
 
-    let result = [
+    let result = []
+    if (reason || branch || actor)
+    {
+        result.push(
             {
                 type: "context",
                 elements: [
@@ -8778,20 +8780,25 @@ function getSlackMessage({ message, color, reason, branch, actor }) {
             {
                 type: "divider"
             },
-        ];
-    for (let message of messages)
-    {
-        result.push(
-            {
-                type: "context",
-                elements: [
-                    {
-                        type: "mrkdwn",
-                        text: message
-                    }
-                ]
-            }
-        );
+        )
+    } else if (message) {
+        var messages = message.split('|')
+    
+        for (let message of messages)
+        {
+            
+            result.push(
+                {
+                    type: "context",
+                    elements: [
+                        {
+                            type: "mrkdwn",
+                            text: message
+                        }
+                    ]
+                }
+            );
+        }
     }
     return result;
   }
