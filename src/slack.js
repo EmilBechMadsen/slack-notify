@@ -24,7 +24,7 @@ function getSlackMessage({ message, color, reason, branch, actor }) {
                 type: "divider"
             },
         ];
-    for (let message in messages)
+    for (let message of messages)
     {
         result.push(
             {
