@@ -8758,9 +8758,6 @@ function getSlackMessage({ message, color, reason, branch, actor }) {
     
 
     let result = [
-      {
-        color,
-        blocks: [
             {
                 type: "context",
                 elements: [
@@ -8781,10 +8778,7 @@ function getSlackMessage({ message, color, reason, branch, actor }) {
             {
                 type: "divider"
             },
-        ],
-        ts: Math.floor(Date.now() / 1000),
-      },
-    ];
+        ];
     return result;
   }
   

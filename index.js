@@ -32,7 +32,7 @@ const { getSlackMessage, formatChannelName } = require('./src/slack');
 
     const args = {
       channel: channelId,
-      attachments,
+      blocks,
     };
 
     if (messageId) {
