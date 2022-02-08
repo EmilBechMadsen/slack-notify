@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const { WebClient } = require('@slack/web-api');
-const { SlackAttachments, formatChannelName } = require('./src/slack');
+const { getSlackMessage, formatChannelName } = require('./src/slack');
 
 (async () => {
   try {

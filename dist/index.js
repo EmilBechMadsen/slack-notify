@@ -8985,7 +8985,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(2186);
 const { WebClient } = __nccwpck_require__(431);
-const { SlackAttachments, formatChannelName } = __nccwpck_require__(9393);
+const { getSlackMessage, formatChannelName } = __nccwpck_require__(9393);
 
 (async () => {
   try {
