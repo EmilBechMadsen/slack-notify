@@ -16,7 +16,7 @@ function getSlackMessage({ status, color, reason, projectName, actor, repoUrl })
           },
           {
             title: 'User',
-            value: actor || context.actor,
+            value: actor,
             short: true,
           },
           {
@@ -25,8 +25,6 @@ function getSlackMessage({ status, color, reason, projectName, actor, repoUrl })
             short: true,
           },
         ],
-        footer_icon: 'https://github.githubassets.com/favicon.ico',
-        footer: `<https://github.com/${owner}/${repo} | ${owner}/${repo}>`,
         ts: Math.floor(Date.now() / 1000),
       },
     ];
