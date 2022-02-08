@@ -4,24 +4,23 @@ const { getSlackMessage, formatChannelName } = require('./src/slack');
 
 (async () => {
   try {
-    const channel = core.getInput('channel') || process.env.channel;
-    const status = core.getInput('message') || process.env.message;
-    const color = core.getInput('color') || process.env.repoUrl;
-    const messageId = core.getInput('message_id')  || process.env.message_id;
-    const reason = core.getInput('reason')  || process.env.reason;
-    const projectName = core.getInput('project_name')  || process.env.project_name;
-    const actor = core.getInput('actor')  || process.env.actor;
-    const repoUrl = core.getInput('repo_url') || process.env.repo_url;
+    const channel = core.getInput('channel') || process.env.SLACK_CHANNEL;
+    const message = core.getInput('message') || process.env.SLACK_MESSAGE;
+    const color = core.getInput('color') || process.env.SLACK_COLOR;
+    const messageId = core.getInput('message_id')  || process.env.SLACK_MESSAGE_ID;
+    const reason = core.getInput('reason')  || process.env.SLACK_REASON;
+    const branch = core.getInput('branch')  || process.env.SLACK_BRANCH;
+    const actor = core.getInput('actor')  || process.env.SLACK_ACTOR;
     const token = process.env.SLACK_BOT_TOKEN;
     const slack = new WebClient(token);
-    const channel_id = core.getInput('channel_id') || process.env.channel_id;
+    const channel_id = core.getInput('channel_id') || process.env.slack_channel_id;
     
     if (!channel && !channel_id) {
       core.setFailed(`You must provider either a 'channel' or a 'channel_id'.`);
       return;
     }
 
-    const attachments = getSlackMessage({ status, color, reason, projectName, actor, repoUrl });
+    const attachments = getSlackMessage({ message, color, reason, branch, actor });
     const channelId = core.getInput('channel_id') || (await lookUpChannelId({ slack, channel }));
 
     if (!channelId) {

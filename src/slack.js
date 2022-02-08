@@ -1,5 +1,5 @@
-function getSlackMessage({ status, color, reason, projectName, actor, repoUrl }) {
-    var statuses = status.split('|').join('\n');
+function getSlackMessage({ message, color, reason, branch, actor }) {
+    var messages = message.split('|').join('\n');
   
     return [
       {
@@ -11,7 +11,7 @@ function getSlackMessage({ status, color, reason, projectName, actor, repoUrl })
           },
           {
             title: 'Branch',
-            value: `<${repoUrl} | ${projectName || repo}>`,
+            value: `${branch}`,
             short: true,
           },
           {
@@ -21,7 +21,7 @@ function getSlackMessage({ status, color, reason, projectName, actor, repoUrl })
           },
           {
             title: 'Status',
-            value: `${statuses}`,
+            value: `${messages}`,
             short: true,
           },
         ],
