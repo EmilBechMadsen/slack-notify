@@ -32,7 +32,7 @@ function getSlackMessage({ status, color, reason, projectName, actor, repoUrl })
     ];
   }
   
-  module.exports.buildSlackAttachments = buildSlackAttachments;
+  module.exports.getSlackMessage = getSlackMessage;
   
   function formatChannelName(channel) {
     return channel.replace(/[#@]/g, '');
