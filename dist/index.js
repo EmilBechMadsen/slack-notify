@@ -8762,7 +8762,8 @@ function getSlackMessage({ message, color, reason, branch, actor }) {
         fields: [
           {
             title: 'Reason',
-            value: `${reason}`
+            value: `${reason}`,
+            short: true,
           },
           {
             title: 'Branch',
@@ -8996,7 +8997,7 @@ const { getSlackMessage, formatChannelName } = __nccwpck_require__(9393);
     const actor = core.getInput('actor')  || process.env.SLACK_ACTOR;
     const token = process.env.SLACK_BOT_TOKEN;
     const slack = new WebClient(token);
-    const channel_id = core.getInput('channel_id') || process.env.slack_channel_id;
+    const channel_id = core.getInput('channel_id') || process.env.SLACK_CHANNEL_ID;
     
     if (!channel && !channel_id) {
       core.setFailed(`You must provider either a 'channel' or a 'channel_id'.`);

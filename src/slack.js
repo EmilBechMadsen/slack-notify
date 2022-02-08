@@ -7,7 +7,8 @@ function getSlackMessage({ message, color, reason, branch, actor }) {
         fields: [
           {
             title: 'Reason',
-            value: `${reason}`
+            value: `${reason}`,
+            short: true,
           },
           {
             title: 'Branch',
