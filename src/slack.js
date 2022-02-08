@@ -6,6 +6,15 @@ function getSlackMessage({ message, reason, branch, actor }) {
     {
         result.push(
             {
+                type: "header",
+                text: {
+                    type: "plain_text",
+                    text: "Deployment started!"
+			    }
+		});
+
+        result.push(
+            {
                 type: "context",
                 elements: [
                     {
