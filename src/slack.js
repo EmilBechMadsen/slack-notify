@@ -34,7 +34,7 @@ function getSlackMessage({ message, color, reason, branch, actor }) {
   module.exports.getSlackMessage = getSlackMessage;
   
   function formatChannelName(channel) {
-    return channel.replace(/[#@]/g, '');
+    return channel ? channel.replace(/[#@]/g, '') : '';
   }
   
   module.exports.formatChannelName = formatChannelName;

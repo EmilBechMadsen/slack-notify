@@ -21,7 +21,7 @@ const { getSlackMessage, formatChannelName } = require('./src/slack');
     }
 
     const attachments = getSlackMessage({ message, color, reason, branch, actor });
-    const channelId = core.getInput('channel_id') || (await lookUpChannelId({ slack, channel }));
+    const channelId = channel_id || (await lookUpChannelId({ slack, channel }));
 
     if (!channelId) {
       core.setFailed(`Slack channel ${channel} could not be found.`);
