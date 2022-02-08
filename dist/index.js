@@ -9000,7 +9000,7 @@ const { getSlackMessage, formatChannelName } = __nccwpck_require__(9393);
       return;
     }
 
-    const attachments = getSlackMessage({ message, color, reason, branch, actor });
+    const blocks = getSlackMessage({ message, color, reason, branch, actor });
     const channelId = channel_id || (await lookUpChannelId({ slack, channel }));
 
     if (!channelId) {
@@ -9012,7 +9012,8 @@ const { getSlackMessage, formatChannelName } = __nccwpck_require__(9393);
 
     const args = {
       channel: channelId,
-      attachments,
+      blocks,
+      ts: Math.floor(Date.now() / 1000),
     };
 
     if (messageId) {

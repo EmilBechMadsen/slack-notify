@@ -20,7 +20,7 @@ const { getSlackMessage, formatChannelName } = require('./src/slack');
       return;
     }
 
-    const attachments = getSlackMessage({ message, color, reason, branch, actor });
+    const blocks = getSlackMessage({ message, color, reason, branch, actor });
     const channelId = channel_id || (await lookUpChannelId({ slack, channel }));
 
     if (!channelId) {
@@ -33,6 +33,7 @@ const { getSlackMessage, formatChannelName } = require('./src/slack');
     const args = {
       channel: channelId,
       blocks,
+      ts: Math.floor(Date.now() / 1000),
     };
 
     if (messageId) {
