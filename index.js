@@ -42,7 +42,7 @@ const { getSlackMessage, formatChannelName } = require('./src/slack');
 
     const response = await slack.chat[apiMethod](args);
 
-    core.setOutput('message_id', response.ts);
+    process.env.GITHUB_OUTPUT =+ "message_id=" + response.ts 
   } catch (error) {
     core.setFailed(error);
   }
